@@ -11,5 +11,9 @@ public class Main {
         array.removeAt(0);
         array.removeAt(3);
         array.print();
+
+        System.out.println("indexOf 10: " + array.indexOf(10));
+        System.out.println("indexOf 40: " + array.indexOf(40));
+        System.out.println("indexOf 100: " + array.indexOf(100));
     }
 }

@@ -8,8 +8,8 @@ public class Array {
     }
 
     public void print() {
-        for (int a : array) {
-            System.out.print(a + " ");
+        for (int i = 0; i < currentIndex; i++) {
+            System.out.println(array[i]);
         }
     }
 
@@ -21,10 +21,11 @@ public class Array {
 
     public void insert(int item) {
         if (currentIndex >= array.length) {
-            int[] newArray = new int[array.length];
-            copyArray(array, newArray);
-            array = new int[array.length + 1];
-            copyArray(newArray, array);
+            int[] newArray = new int[array.length * 2];
+            for (int i = 0; i < array.length; i++) {
+                newArray[i] = array[i];
+            }
+            array = newArray;
         }
 
         array[currentIndex] = item;
@@ -32,22 +33,25 @@ public class Array {
 
     }
 
-    public void removeAt(int indexOf) {
-        if (indexOf >= array.length) {
-            System.out.println("Out of bound index.");
-            return;
+    public void removeAt(int index) {
+        if (index < 0 || index >= array.length) {
+            throw new IllegalArgumentException();
         }
 
-        int[] newArray = new int[array.length - 1];
-        for ( int i = 0; i < indexOf; i++ ) {
-            newArray[i] = array[i];
-        }
-        for ( int i = (indexOf + 1); i < array.length; i++) {
-            newArray[i - 1] = array[i];
+        for ( int i = (index + 1); i < array.length; i++) {
+            array[i - 1] = array[i];
         }
 
-        array = new int[array.length - 1];
-        copyArray(newArray, array);
         currentIndex--;
+    }
+
+    public int indexOf(int item) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == item) {
+                return i;
+            }
+        }
+
+        return -1;
     }
 }
