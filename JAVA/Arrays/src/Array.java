@@ -13,12 +13,6 @@ public class Array {
         }
     }
 
-    public void copyArray(int[] from, int[] to) {
-        for (int i = 0; i < from.length; i++) {
-            to[i] = from[i];
-        }
-    }
-
     public void insert(int item) {
         if (currentIndex >= array.length) {
             int[] newArray = new int[array.length * 2];
